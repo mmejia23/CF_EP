@@ -8,10 +8,11 @@ function copy_SPM_files(dir_data)
 
     dir_list = spm_select('List', dir_data, 'dir', '(sub-S|sub-EP)');
 
-    file_to_copy = fullfile(dir_data, deblank(dir_list(2:end,:)), 'SPM.mat');
-    file_to_save = fullfile(dir_out, deblank(dir_list(2:end,:)), 'SPM.mat');
+    for i = 2:size(dir_list,1)
+        file_to_copy = fullfile(dir_data, deblank(dir_list(i,:)), 'SPM.mat');
+        file_to_save = fullfile(dir_out, deblank(dir_list(i,:)), 'SPM.mat');
 
-    fprintf('\n ... Copying file to: %s\n', file_to_save);
-    copyfile(file_to_copy, file_to_save)
-
+        fprintf('\n ... Copying file to: %s\n', file_to_save);
+        copyfile(file_to_copy, file_to_save)
+    end
 end
